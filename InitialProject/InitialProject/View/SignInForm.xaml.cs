@@ -50,6 +50,7 @@ namespace InitialProject
             {
                 if(user.Password == txtPassword.Password)
                 {
+                    switch(user.Role)
                     CommentsOverview commentsOverview = new CommentsOverview(user);
                     commentsOverview.Show();
                     Close();
