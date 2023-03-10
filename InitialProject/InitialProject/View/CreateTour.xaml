@@ -25,8 +25,6 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -38,14 +36,12 @@
             <Label Grid.Row="2" Grid.Column="0" Height="30">Country</Label>
             <Label Grid.Row="3" Grid.Column="0" Height="30">Description</Label>
             <Label Grid.Row="4" Grid.Column="0" Height="30">Language</Label>
-            <Label Grid.Row="5" Grid.Column="0" Height="30">MaxGuestNum</Label>
-            <Label Grid.Row="6" Grid.Column="0" Height="30">Start point</Label>
-            <Label Grid.Row="7" Grid.Column="0" Height="30">Additional point</Label>
-            <Label Grid.Row="8" Grid.Column="0" Height="30">End point</Label>
-            <Label Grid.Row="9" Grid.Column="0" Height="30">Start date</Label>
-            <Label Grid.Row="10" Grid.Column="0" Height="30">End date</Label>
-            <Label Grid.Row="11" Grid.Column="0" Height="30">Duration</Label>
-            <Label Grid.Row="12" Grid.Column="0" Height="30">Image url</Label>
+            <Label Grid.Row="5" Grid.Column="0" Height="30">Max guest number</Label>
+            <Label Grid.Row="6" Grid.Column="0" Height="30">Tour points</Label>
+            <Label Grid.Row="7" Grid.Column="0" Height="30">Start date</Label>
+            <Label Grid.Row="8" Grid.Column="0" Height="30">End date</Label>
+            <Label Grid.Row="9" Grid.Column="0" Height="30">Duration</Label>
+            <Label Grid.Row="10" Grid.Column="0" Height="30">Image url</Label>
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
@@ -58,19 +54,15 @@
                      Height="30"></TextBox>
             <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=MaxGuestNum, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=StartPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Points, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=AdditionalPoints, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=StartDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=EndPoint, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=EndDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Path=StartDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Path=Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding Path=EndDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding Path=Duration, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="12" Grid.Column="1" Text="{Binding Path=ImageUrls, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding Path=ImageUrls, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="23"></TextBox>
         </Grid>
         <WrapPanel Grid.Row="1" FlowDirection="RightToLeft">

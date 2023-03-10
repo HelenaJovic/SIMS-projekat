@@ -26,6 +26,7 @@ namespace InitialProject.View
         public User LoggedInUser { get; set; }
         private readonly TourRepository _tourRepository;
         private readonly LocationRepository _locationRepository;
+        private readonly TourPointRepository _tourPointRepository;
 
         private string _name;
         private string _city;
@@ -33,9 +34,7 @@ namespace InitialProject.View
         private string _description;
         private string _language;
         private string _maxGuestNum;
-        private string _startPoint;
-        private string _additionalPoints;
-        private string _endPoint;
+        private string _points;
         private string _startDate;
         private string _endDate;
         private string _duration;
@@ -120,38 +119,14 @@ namespace InitialProject.View
                 }
             }
         }
-        public string StartPoint
+        public string Points
         {
-            get => _startPoint;
+            get => _points;
             set
             {
-                if (value != _startPoint)
+                if (value != _points)
                 {
-                    _startPoint = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        public string AdditionalPoint
-        {
-            get => _additionalPoints;
-            set
-            {
-                if (value != _additionalPoints)
-                {
-                    _additionalPoints = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        public string EndPoint
-        {
-            get => _endPoint;
-            set
-            {
-                if (value != _endPoint)
-                {
-                    _endPoint = value;
+                    _points = value;
                     OnPropertyChanged();
                 }
             }
@@ -208,18 +183,29 @@ namespace InitialProject.View
         public CreateTour(User user)
         {
             InitializeComponent();
-            DataContext= this;
-            LoggedInUser= user;
-            _tourRepository= new TourRepository();
-            _locationRepository= new LocationRepository();
+            DataContext = this;
+            LoggedInUser = user;
+            _tourRepository = new TourRepository();
+            _locationRepository = new LocationRepository();
+            _tourPointRepository = new TourPointRepository();
         }
-
         private void ConfirmCreate_Click(object sender, RoutedEventArgs e)
         {
             Location newLocation = new Location(City, Country);
             Location savedLocation = _locationRepository.Save(newLocation);
-            Tour newTour = new Tour(TourName, savedLocation.Id, TourLanguage, int.Parse(MaxGuestNum), DateTime.Parse(StartDate), DateTime.Parse(EndDate), int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id) ;
+
+            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateTime.Parse(StartDate), DateTime.Parse(EndDate), int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id) ;
             Tour savedTour = _tourRepository.Save(newTour);
+
+            string[] pointsNames = _points.Split(",");
+            int order = 1;
+            foreach (string name in pointsNames)
+            {
+                TourPoint newTourPoint = new TourPoint(name, false, order, savedTour.Id);
+                TourPoint savedTourPoint = _tourPointRepository.Save(newTourPoint);
+                order++;
+            }
+
             GuideMainWindow.Tours.Add(savedTour);
             Close();
         }
