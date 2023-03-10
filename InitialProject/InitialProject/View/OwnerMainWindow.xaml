@@ -7,6 +7,34 @@
         mc:Ignorable="d"
         Title="OwnerMainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" FontSize="40" HorizontalAlignment="Center" Margin="0,10,0,19" >Owner</Label>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" FontSize="25" Height="40" HorizontalAlignment="Center" Margin="0,53,0,53" Width="380">Add accommodation:</Label>
+            <Label Grid.Row="1" FontSize="25" Height="40" HorizontalAlignment="Left" Margin="0,70,0,57">Rate guests:</Label>
+
+
+            <Button Grid.Row="0" Grid.Column="1" Content="Cancel" IsCancel="True" HorizontalAlignment="Center" Margin="0,64,0,65" Width="226"/>
+
+
+        </Grid>
+
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InitialProject.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
-	public class Accommodation
+	public class Accommodation : ISerializable
 	{
 	
 		public int Id { get; set; }
@@ -23,9 +24,9 @@ namespace InitialProject.Model
 
 		public int DaysBeforeCancel { get; set; }
 
-		public int IdImage { get; set; }
+		public string ImageUrl { get; set; }
 
-		public Accommodation(string name, int idLocation, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idImage)
+		public Accommodation(string name, int idLocation, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, string imageUrl)
 		{
 			this.Name = name;
 			this.IdLocation = idLocation;
@@ -33,7 +34,7 @@ namespace InitialProject.Model
 			this.MaxGuestNum = maxGuestNum;
 			this.MinReservationDays=minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
-			this.IdImage = idImage;
+			this.ImageUrl = imageUrl;
 
 		}
 
@@ -51,7 +52,7 @@ namespace InitialProject.Model
 			MaxGuestNum = int.Parse(values[4]);
 			MinReservationDays = int.Parse(values[5]);
 			DaysBeforeCancel=int.Parse(values[6]);
-			IdImage = int.Parse(values[7]);
+			ImageUrl = values[7];
 
 
 		}
@@ -67,7 +68,7 @@ namespace InitialProject.Model
 				MaxGuestNum.ToString(),
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
-				IdImage.ToString(),
+				ImageUrl
 			    
 
 			};
