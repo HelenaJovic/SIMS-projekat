@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace InitialProject.Repository
 {
@@ -63,6 +64,11 @@ namespace InitialProject.Repository
             _tours.Insert(index, tour);       // keep ascending order of ids in file 
             _serializer.ToCSV(FilePath, _tours);
             return tour;
+        }
+        public List<Tour> GetByUser(User user)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+            return _tours.FindAll(c => c.IdUser == user.Id);
         }
     }
 }
