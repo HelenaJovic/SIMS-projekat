@@ -24,5 +24,10 @@ namespace InitialProject.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click_Search(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

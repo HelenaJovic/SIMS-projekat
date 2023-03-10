@@ -5,8 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InitialProject.View"
         mc:Ignorable="d"
-        Title="Guest2MainWindow" Height="450" Width="800">
+        Title="Guest2MainWindow" Height="450" Width="800"
+        WindowStartupLocation = "CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ToolBar>
+                <TextBox Width="200" Margin="500, 0, 1, 0">
+                    
+                </TextBox>
+                <Button Click="Button_Click_Search" Width="25" HorizontalAlignment="Right" Background="White">
+                    <Image x:Name="SearchIt" Height="15" Width="20" Source="C:\Users\Katarina\Desktop\sims-projekat\SIMS-projekat\InitialProject\InitialProject\Resources\Images\search.png"/>
+                </Button>
+            </ToolBar>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <TabControl BorderBrush="Black" BorderThickness="1" Padding="10 20 10 20" Grid.ColumnSpan="2" Name="Tab">
+                <TabItem Header="Tours">
+                    <DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Language" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="MaxGuestNum" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Points" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="StartDate" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="EndDate" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Duration" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="FreeSetsNum" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Active" Width="1*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Reservation">
+                    <DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="" Width="1*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <Button Content="Reserve">
+                    
+                    
+                </Button>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Button Content="View gallery" Margin="10, 0, 0, 0">
+
+
+                </Button>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
