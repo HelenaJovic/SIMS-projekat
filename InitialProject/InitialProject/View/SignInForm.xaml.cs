@@ -58,6 +58,7 @@ namespace InitialProject
                             break;
                         case Roles.GUEST1:
                             Guest1MainWindow guest1MainWindow = new Guest1MainWindow(user);
+                            guest1MainWindow.Show();
                             break;
                         case Roles.GUIDE:
                             GuideMainWindow guideMainWindow = new GuideMainWindow(user);
@@ -66,9 +67,8 @@ namespace InitialProject
                             Guest2MainWindow guest2MainWindow = new Guest2MainWindow(user);
                             break;
                     }
-                    CommentsOverview commentsOverview = new CommentsOverview(user);
-                    commentsOverview.Show();
-                    Close();
+                   
+                    //Close();
                 } 
                 else
                 {

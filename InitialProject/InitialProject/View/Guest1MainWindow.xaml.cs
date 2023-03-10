@@ -24,5 +24,20 @@ namespace InitialProject.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click_Search(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ViewGallery_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Reserve_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
