@@ -26,7 +26,9 @@ namespace InitialProject.Model
 
 		public int IdImage { get; set; }
 
-		public Accommodation(string name, int idLocation, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idImage)
+		public int IdUser { get; set; }
+
+		public Accommodation(string name, int idLocation, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idImage,int idUser)
 		{
 			this.Name = name;
 			this.IdLocation = idLocation;
@@ -35,6 +37,7 @@ namespace InitialProject.Model
 			this.MinReservationDays=minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
 			this.IdImage = idImage;
+			this.IdUser= idUser;
 
 		}
 
@@ -53,6 +56,7 @@ namespace InitialProject.Model
 			MinReservationDays = int.Parse(values[5]);
 			DaysBeforeCancel=int.Parse(values[6]);
 			IdImage = int.Parse(values[7]);
+			IdUser = int.Parse(values[8]);
 
 
 		}
@@ -69,6 +73,7 @@ namespace InitialProject.Model
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
 				IdImage.ToString(),
+				IdUser.ToString(),
 			    
 
 			};
