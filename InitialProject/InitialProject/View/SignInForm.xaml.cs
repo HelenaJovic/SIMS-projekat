@@ -70,9 +70,14 @@ namespace InitialProject
                             guest2MainWindow.Show();
                             break;
                     }
+
                  /* CommentsOverview commentsOverview = new CommentsOverview(user);
                     commentsOverview.Show();
                     Close();*/
+
+                   
+                    //Close();
+
                 } 
                 else
                 {
