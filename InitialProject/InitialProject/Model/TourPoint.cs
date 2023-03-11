@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
-    internal class TourPoint : ISerializable
+    public class TourPoint : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -19,9 +19,8 @@ namespace InitialProject.Model
         {
             Guests = new List<User>();
         }
-        public TourPoint(int id, string name, bool active, int order, int idTour)
+        public TourPoint(string name, bool active, int order, int idTour)
         {
-            Id = id;
             Name = name;
             Active = active;
             Order = order;

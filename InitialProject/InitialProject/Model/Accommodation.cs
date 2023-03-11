@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
+
 	public class Accommodation : ISerializable
+
 	{
 
 		public int Id { get; set; }
@@ -28,7 +30,11 @@ namespace InitialProject.Model
 
 		public int IdUser { get; set; }
 
+
 		public Accommodation(string name,Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser)
+
+
+
 		{
 			this.Name = name;
 			this.Location = location;
@@ -36,8 +42,10 @@ namespace InitialProject.Model
 			this.MaxGuestNum = maxGuestNum;
 			this.MinReservationDays=minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
-			
-			this.IdUser = idUser;
+			this.IdImage = idImage;
+			this.IdUser= idUser;
+
+
 		}
 
 		public Accommodation()
@@ -55,9 +63,7 @@ namespace InitialProject.Model
 			MinReservationDays = int.Parse(values[6]);
 			DaysBeforeCancel=int.Parse(values[7]);
 			IdUser = int.Parse(values[9]);
-
-
-		}
+  }
 
 		public string[] ToCSV()
 		{
@@ -71,8 +77,9 @@ namespace InitialProject.Model
 				MaxGuestNum.ToString(),
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
-				IdUser.ToString()
-			    
+        IdImage.ToString(),
+				IdUser.ToString(),
+
 
 			};
 			return csvValues;
