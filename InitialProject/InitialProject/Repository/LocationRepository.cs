@@ -1,4 +1,4 @@
-﻿using InitialProject.Model;
+using InitialProject.Model;
 using InitialProject.Serializer;
 using System;
 using System.Collections.Generic;
@@ -30,11 +30,23 @@ namespace InitialProject.Repository
 
         public Location Save(Location location)
         {
-            location.Id = NextId();
-            _locations = _serializer.FromCSV(FilePath);
-            _locations.Add(location);
-            _serializer.ToCSV(FilePath, _locations);
+            if (!IsSaved(location)){
+                location.Id = NextId();
+                _locations = _serializer.FromCSV(FilePath);
+                _locations.Add(location);
+                _serializer.ToCSV(FilePath, _locations);
+            }
             return location;
+        }
+
+        public bool IsSaved(Location location)
+        {
+            _locations = _serializer.FromCSV(FilePath);
+            Location current = _locations.Find(c => c.City == location.City);
+            if (current != null)
+                return true;
+            else
+                return false;
         }
 
         public int NextId()

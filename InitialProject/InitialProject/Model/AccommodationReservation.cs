@@ -12,20 +12,23 @@ namespace InitialProject.Model
        public int Id { get; set; }
        public int IdGuest { get; set; }
         
-       public DateTime startDate { get; set; }
-       public DateTime endDate { get; set; }
+       public DateTime StartDate { get; set; }
+       public DateTime EndDate { get; set; }
+       
+       public int DaysNum { get; set; }
 
         public AccommodationReservation()
         {
 
         }
 
-        public AccommodationReservation(int id, int idguest, DateTime startDate, DateTime endDate)
+        public AccommodationReservation(int id, int idguest, DateTime startDate, DateTime endDate,int daysNum)
         {
             Id = id;
             IdGuest = idguest;
-            this.startDate = startDate;
-            this.endDate = endDate;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+            this.DaysNum = daysNum;
         }
 
         public string[] ToCSV()
@@ -34,8 +37,9 @@ namespace InitialProject.Model
             {
                 Id.ToString(),
                 IdGuest.ToString(),
-                startDate.ToString(),
-                endDate.ToString(),
+                StartDate.ToString(),
+                EndDate.ToString(),
+                DaysNum.ToString()
                 
             };
             return csvValues;
@@ -45,8 +49,10 @@ namespace InitialProject.Model
         {
             Id = int.Parse(values[0]);
             IdGuest=int.Parse(values[1]);
-            startDate = DateTime.Parse(values[2]);
-            endDate = DateTime.Parse(values[3]);
+            StartDate = DateTime.Parse(values[2]);
+            EndDate = DateTime.Parse(values[3]);
+            DaysNum = int.Parse(values[4]);
+
         }
     }
 }

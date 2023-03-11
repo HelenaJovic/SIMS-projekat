@@ -13,9 +13,9 @@
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" >
 
-            <ToolBar >
+            <ToolBar Background="AntiqueWhite" >
                 <ComboBox Width="100" x:Name="Filters">
                     <ComboBoxItem Content="Name" x:Name="AccommodationName">
                     </ComboBoxItem>
@@ -43,10 +43,11 @@
             <TabItem Header="Accommodation">
                     <DataGrid  ItemsSource="{Binding AccommodationsMainList, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
-                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Background="Bisque">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding Name}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Location" Width="1*" Binding="{Binding Location}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="City" Width="1*" Binding="{Binding Location.City}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Country" Width="1*" Binding="{Binding Location.Country}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Type" Width="1*" Binding="{Binding Type}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Max Guest Num" Binding="{Binding MaxGuestNum}" Width="1*"></DataGridTextColumn>
                             <DataGridTextColumn Header="Min reservation days" Width="1*" Binding="{Binding MinReservationDays}" ></DataGridTextColumn>
@@ -66,7 +67,7 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <StatusBar Grid.Row="2">
+        <StatusBar Grid.Row="2" Background="BurlyWood">
             <StatusBarItem>
                 <Button Content="Reserve" Click="Reserve_Click">
                     
