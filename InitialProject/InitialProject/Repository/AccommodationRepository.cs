@@ -66,10 +66,13 @@ namespace InitialProject.Repository
         }
 
         public List<Accommodation> GetByUser(User user)
-        {
-            _accommodations = _serializer.FromCSV(FilePath);
-            return _accommodations.FindAll(c => c.IdUser == user.Id);
-        }
+
+		{
+            _accommodations= _serializer.FromCSV(FilePath);
+            return _accommodations.FindAll(a => a.IdUser == user.Id);
+		}
+
+       
 
     }
 }

@@ -4,7 +4,7 @@ using System.Data;
 
 namespace InitialProject.Model
 {
-    public enum Roles { OWNER, GUEST1, GUIDE, GUEST2 };
+    
     public class User : ISerializable
     {
         public int Id { get; set; }
