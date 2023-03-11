@@ -9,12 +9,12 @@ namespace InitialProject.Model
 {
 	public class Accommodation : ISerializable
 	{
-	
+
 		public int Id { get; set; }
 
 		public string Name { get; set; }
 
-		public int IdLocation { get; set; }
+		public Location Location { get; set; }
 
 		public AccommodationType Type { get; set; }
 
@@ -24,18 +24,20 @@ namespace InitialProject.Model
 
 		public int DaysBeforeCancel { get; set; }
 
-		public string ImageUrl { get; set; }
+		public List<Image> Images	{get; set;}
 
-		public Accommodation(string name, int idLocation, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, string imageUrl)
+		public int IdUser { get; set; }
+
+		public Accommodation(string name,Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser)
 		{
 			this.Name = name;
-			this.IdLocation = idLocation;
+			this.Location = location;
 			this.Type = type;
 			this.MaxGuestNum = maxGuestNum;
 			this.MinReservationDays=minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
-			this.ImageUrl = imageUrl;
-
+			
+			this.IdUser = idUser;
 		}
 
 		public Accommodation()
@@ -47,12 +49,12 @@ namespace InitialProject.Model
 		{
 			Id = int.Parse(values[0]);
 			Name = values[1];
-			IdLocation = int.Parse(values[2]);
-			Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), values[3]);
-			MaxGuestNum = int.Parse(values[4]);
-			MinReservationDays = int.Parse(values[5]);
-			DaysBeforeCancel=int.Parse(values[6]);
-			ImageUrl = values[7];
+			Location = new Location(values[2], values[3]);
+			Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), values[4]);
+			MaxGuestNum = int.Parse(values[5]);
+			MinReservationDays = int.Parse(values[6]);
+			DaysBeforeCancel=int.Parse(values[7]);
+			IdUser = int.Parse(values[9]);
 
 
 		}
@@ -63,12 +65,13 @@ namespace InitialProject.Model
 			{
 				Id.ToString(),
 				Name,
-				IdLocation.ToString(),
+				Location.City,
+				Location.Country,
 				Type.ToString(),
 				MaxGuestNum.ToString(),
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
-				ImageUrl
+				IdUser.ToString()
 			    
 
 			};

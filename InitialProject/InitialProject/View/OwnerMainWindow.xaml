@@ -8,33 +8,43 @@
         Title="OwnerMainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="340"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontSize="40" HorizontalAlignment="Center" Margin="0,10,0,19" >Owner</Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="760"/>
+            <ColumnDefinition Width="*"/>
+           
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+        <Label Grid.Row="0" Grid.Column="1" FontSize="25" HorizontalAlignment="Center" FontWeight="Bold"> OWNER</Label>
 
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <DataGrid ItemsSource="{Binding Accommodations}"
+                      SelectedItem="{Binding Path=SelectedAccommodation}"
+                      IsReadOnly="True" SelectionMode="Single" 
+                  AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="108"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding Location.City}" Width="108"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Location.Country}" Width="108"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="108"/>
+                    <DataGridTextColumn Header="MaxGuestNum" Binding="{Binding MaxGuestNum}" Width="108"/>
+                    <DataGridTextColumn Header="MinReservationDays" Binding="{Binding MinReservationDays}" Width="108"/>
+                    <DataGridTextColumn Header="DaysBeforeCancel" Binding="{Binding DaysBeforeCancel}" Width="108"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
 
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" FontSize="25" Height="40" HorizontalAlignment="Center" Margin="0,53,0,53" Width="380">Add accommodation:</Label>
-            <Label Grid.Row="1" FontSize="25" Height="40" HorizontalAlignment="Left" Margin="0,70,0,57">Rate guests:</Label>
-
-
-            <Button Grid.Row="0" Grid.Column="1" Content="Cancel" IsCancel="True" HorizontalAlignment="Center" Margin="0,64,0,65" Width="226"/>
-
-
-        </Grid>
-
+        <WrapPanel Grid.Row="4"  Grid.Column="1" >
+            <Button Width="95" Height="40" Click="AddAccommodation_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 0, 20, 0">Add Accommodation</Button>
+            <Button Width="95" Height="40" Click="RateGuests_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 0, 20, 0">Rate Guests</Button>
+        </WrapPanel>
     </Grid>
 </Window>

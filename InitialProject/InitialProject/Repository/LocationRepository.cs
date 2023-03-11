@@ -29,11 +29,25 @@ namespace InitialProject.Repository
 
         public Location Save(Location location)
         {
-            location.Id = NextId();
-            _locations = _serializer.FromCSV(FilePath);
-            _locations.Add(location);
-            _serializer.ToCSV(FilePath, _locations);
+            if (IsSaved(location) == false)
+            {
+                location.Id = NextId();
+                _locations = _serializer.FromCSV(FilePath);
+                _locations.Add(location);
+                _serializer.ToCSV(FilePath, _locations);
+            }
             return location;
+        }
+
+        public bool IsSaved(Location location)
+		{
+            _locations = _serializer.FromCSV(FilePath); 
+            foreach( Location locs in _locations)
+			{
+                if (locs.City == location.City)
+                    return true;
+			}
+            return false;
         }
 
         public int NextId()
