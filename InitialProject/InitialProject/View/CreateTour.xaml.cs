@@ -194,7 +194,7 @@ namespace InitialProject.View
             Location newLocation = new Location(City, Country);
             Location savedLocation = _locationRepository.Save(newLocation);
 
-            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateTime.Parse(StartDate), DateTime.Parse(EndDate), int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id) ;
+            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateTime.Parse(StartDate), DateTime.Parse(EndDate), int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id, newLocation.Id) ;
             Tour savedTour = _tourRepository.Save(newTour);
 
             string[] pointsNames = _points.Split(",");

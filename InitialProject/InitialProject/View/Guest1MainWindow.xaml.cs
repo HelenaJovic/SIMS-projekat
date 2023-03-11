@@ -45,15 +45,37 @@ namespace InitialProject.View
             _accommodationRepository = new AccommodationRepository();
             AccommodationsMainList = new ObservableCollection<Accommodation>();
             AccommodationsCopyList = new ObservableCollection<Accommodation>();
+            Locations = new ObservableCollection<Location>();
             Accommodations = new ObservableCollection<Accommodation>(_accommodationRepository.GetByUser(user));
-            string[] lines = File.ReadAllLines("../../../Resources/Data/accommodations.csv");
-            foreach(string line in lines)
-            {
+            string[] linesAccommodation = File.ReadAllLines("../../../Resources/Data/accommodations.csv");
+            string[] linesLocation = File.ReadAllLines("../../../Resources/Data/locations.csv");
+            foreach (string line in linesAccommodation)
+            {   Location location = new Location();
                 Accommodation a = new Accommodation();
-                string[] splited=line.Split("|");
+                foreach(string lineLocation in linesLocation)
+                {
+                   
+                    string[] splited_loc = line.Split("|");
+                    location.FromCSV(splited_loc);
+                    Locations.Add(location);
+                }
+                /*if(a.IdLocation==location.Id)
+                {
+                    string[] splited = line.Split("|");
+                    a.FromCSV(splited);
+
+                    AccommodationsMainList.Add(a);
+                    AccommodationsCopyList.Add(a);
+                }*/
+                string[] splited = line.Split("|");
                 a.FromCSV(splited);
+
                 AccommodationsMainList.Add(a);
                 AccommodationsCopyList.Add(a);
+
+                // l.FromCSV()
+
+
             }
 
         }
@@ -81,9 +103,9 @@ namespace InitialProject.View
             String [] splitted=TxtSearch.Text.Split(" ");
             List<int> indexesToDrop= new List<int>();
 
-            if(splitted.Length==1)
+            if (splitted.Length == 1)
             {
-                foreach(Accommodation a in AccommodationsCopyList)
+                foreach (Accommodation a in AccommodationsCopyList)
                 {
                     if (AccommodationName.IsSelected)
                     {
@@ -94,35 +116,56 @@ namespace InitialProject.View
                     }
                     else if (GuestNumber.IsSelected)
                     {
-                        if(a.MaxGuestNum.ToString().CompareTo(splitted[0].ToLower()) < 0 && a.MaxGuestNum.ToString().Equals(splitted[0]))
+                        if (a.MaxGuestNum.ToString().CompareTo(splitted[0].ToLower()) < 0 && !a.MaxGuestNum.ToString().Equals(splitted[0]))
                         {
                             indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
                         }
                     }
-                    else if(ReservationNumDays.IsSelected)
+                    else if (ReservationNumDays.IsSelected)
                     {
                         if (a.MinReservationDays.ToString().CompareTo(splitted[0].ToLower()) > 0 && !a.MinReservationDays.ToString().Equals(splitted[0]))
                         {
                             indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
                         }
                     }
-                    else if(AccommodationType.IsSelected)
+                    else if (AccommodationType.IsSelected)
                     {
-                        if(!a.Type.ToString().ToLower().Contains(splitted[0].ToLower()))
-                            {
+                        if (!a.Type.ToString().ToLower().Contains(splitted[0].ToLower()))
+                        {
                             indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
                         }
                     }
 
+
                 }
-                for(int i=indexesToDrop.Count-1; i>=0; i--)
+            }
+            else if (splitted.Length == 2)
+            {
+                /*foreach (Accommodation a in AccommodationsCopyList)
+                {
+                    if (AccommodationLocation.IsSelected)
+                    {
+                        foreach(Location loc in Locations)
+                        {
+                            if(a.IdLocation==loc.Id)
+                            {
+                                if(!loc.City.ToLower().Contains(splitted[0].ToLower()) && !loc.Country.ToLower().Contains(splitted[1].ToLower()))
+                                {
+                                    indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
+                                }
+                            }
+                        }
+                    }
+                }*/
+            }
+                for (int i = indexesToDrop.Count - 1; i >= 0; i--)
                 {
                     AccommodationsMainList.RemoveAt(indexesToDrop[i]);
                 }
             }
 
 
-        }
+        
 
         private void ViewGallery_Click(object sender, RoutedEventArgs e)
         {
@@ -131,7 +174,8 @@ namespace InitialProject.View
 
         private void Reserve_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateReservation createReservation = new CreateReservation();
+            createReservation.Show();
         }
     }
 }

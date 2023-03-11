@@ -15,6 +15,7 @@ namespace InitialProject.Model
         public int IdTour { get; set; }
         public int IdUser { get; set; }
         public int GuestNum { get; set; }
+        public int IdLocation { get; set; }
 
         public TourReservation() { }
 

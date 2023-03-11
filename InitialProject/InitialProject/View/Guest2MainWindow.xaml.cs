@@ -32,6 +32,7 @@ namespace InitialProject.View
         public static ObservableCollection<Location> Locations { get; set; }
         public Tour SelectedTour { get; set; }
         public User LoggedInUser { get; set; }
+
         private readonly TourRepository _tourRepository;
         public List<Tour> tours { get; set; }
         public Guest2MainWindow(User user)
@@ -43,6 +44,7 @@ namespace InitialProject.View
             Tours = new ObservableCollection<Tour>(_tourRepository.GetByUser(user));
             ToursMainList = new ObservableCollection<Tour>();
             ToursCopyList = new ObservableCollection<Tour>();
+            Locations = new ObservableCollection<Location>();
             string[] lines = File.ReadAllLines("../../../Resources/Data/tours.csv");
             foreach (string line in lines)
             {
@@ -71,10 +73,6 @@ namespace InitialProject.View
                 return;
             }
             String[] splitted = txtSearch.Text.Split(",");
-            foreach (String s in splitted)
-            {
-                s.Replace(" ", "");
-            }
             List<int> indexesToDrop = new List<int>();
             if (splitted.Length==1)
             {
@@ -98,35 +96,40 @@ namespace InitialProject.View
                     }
                     else if (TourGuestNumber.IsSelected)
                     {
-                        if (t.MaxGuestNum.ToString().CompareTo(splitted[0]) < 0)
+                        if (t.MaxGuestNum.ToString().CompareTo(splitted[0]) > 0 && t.MaxGuestNum.ToString().CompareTo(splitted[0])!=0)
                         {
                             indexesToDrop.Add(ToursCopyList.IndexOf(t));
                         }
                     }
                 }
+                for (int i = indexesToDrop.Count-1; i>=0; i--)
+                {
+                    ToursMainList.RemoveAt(indexesToDrop[i]);
+                }
             }
             else if (splitted.Length==2)
             {
-                foreach (Tour t in ToursCopyList)
+                if (TourLocation.IsSelected)
                 {
-                    foreach (Location location in Locations)
-
+                    foreach (Tour t in ToursCopyList)
                     {
-                        if (t.Location.Id.Equals(location.Id))
+                        foreach (Location location in Locations)
                         {
-                            if (!location.City.ToLower().Contains(splitted[0].ToLower()) && !location.Country.ToLower().Contains(splitted[1].ToLower()))
+                            if (t.IdLocation == location.Id)
                             {
-                                indexesToDrop.Add(ToursCopyList.IndexOf(t));
+                                if (!t.Location.City.ToLower().Equals(splitted[0].ToLower()) && !t.Location.Country.ToLower().Equals(splitted[1].ToLower()))
+                                {
+                                    indexesToDrop.Add(ToursCopyList.IndexOf(t));
+                                }
                             }
                         }
                     }
                 }
+                for (int i = indexesToDrop.Count-1; i>=0; i--)
+                {
+                    ToursMainList.RemoveAt(indexesToDrop[i]);
+                }
             }
-            for (int i = indexesToDrop.Count-1; i>=0; i--)
-            {
-                ToursMainList.RemoveAt(indexesToDrop[i]);
-            }
-
         }
 
         private void Button_Click_Filters(object sender, RoutedEventArgs e)
