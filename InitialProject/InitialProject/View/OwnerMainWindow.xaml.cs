@@ -49,7 +49,8 @@ namespace InitialProject.View
 
 		private void RateGuests_Click(object sender, RoutedEventArgs e)
 		{
-
+            RateGuests rateGuests = new RateGuests();
+            rateGuests.Show();
 		}
 	}
 }

@@ -181,7 +181,7 @@ namespace InitialProject.View
 			
 			Location Location1 = new Location(City, Country);
 			Location savedLocation = _locationRepository.Save(Location1);
-			Accommodation Accommodation1 = new Accommodation(AName,savedLocation, (AccommodationType)Enum.Parse(typeof(AccommodationType), AccommodationType), int.Parse(MaxGuestNum), int.Parse(MinResevationDays), int.Parse(DaysBeforeCancel), LoggedInUser.Id);
+			Accommodation Accommodation1 = new Accommodation(AName,savedLocation.Id,savedLocation, (AccommodationType)Enum.Parse(typeof(AccommodationType), AccommodationType), int.Parse(MaxGuestNum), int.Parse(MinResevationDays), int.Parse(DaysBeforeCancel), LoggedInUser.Id);
 			Accommodation savedAccommodation = _repository.Save(Accommodation1);
 			foreach (string urls in ImageUrl.Split(','))
 			{
