@@ -19,9 +19,8 @@ namespace InitialProject.Model
         {
             Guests = new List<User>();
         }
-        public TourPoint(int id, string name, bool active, int order, int idTour)
+        public TourPoint(string name, bool active, int order, int idTour)
         {
-            Id = id;
             Name = name;
             Active = active;
             Order = order;

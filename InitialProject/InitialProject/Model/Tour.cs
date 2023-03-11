@@ -12,7 +12,7 @@ namespace InitialProject.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int IdLocation { get; set; }
+        public Location Location { get; set; }
         public string Descripiton { get; set; }
         public string Language { get; set; }
         public int MaxGuestNum { get; set; }
@@ -32,10 +32,10 @@ namespace InitialProject.Model
             Images = new List<Image>();
         }
 
-        public Tour(string name, int idLocation, string language, int maxGuestNum, DateTime startDate, DateTime endDate, int duration, int freeSetsNum, bool active, int idUser)
+        public Tour(string name, Location location, string language, int maxGuestNum, DateTime startDate, DateTime endDate, int duration, int freeSetsNum, bool active, int idUser)
         {
             Name = name;
-            IdLocation = idLocation;
+            Location = location;
             Language = language;
             MaxGuestNum = maxGuestNum;
             StartDate = startDate;
@@ -52,7 +52,8 @@ namespace InitialProject.Model
             {
                 Id.ToString(),
                 Name,
-                IdLocation.ToString(),
+                Location.City,
+                Location.Country,
                 Language,
                 MaxGuestNum.ToString(),
                 StartDate.ToString(),
@@ -69,15 +70,15 @@ namespace InitialProject.Model
         {
             Id = int.Parse(values[0]);
             Name = values[1];
-            IdLocation= int.Parse(values[2]);
-            Language = values[3];
-            MaxGuestNum = int.Parse(values[4]);
-            StartDate = DateTime.Parse(values[5]);
-            EndDate = DateTime.Parse(values[6]);
-            Duration = int.Parse(values[7]);
-            FreeSetsNum = int.Parse(values[8]);
-            Active = bool.Parse(values[9]);
-            IdUser = int.Parse(values[10]);
+            Location = new Location(values[2], values[3]);
+            Language = values[4];
+            MaxGuestNum = int.Parse(values[5]);
+            StartDate = DateTime.Parse(values[6]);
+            EndDate = DateTime.Parse(values[7]);
+            Duration = int.Parse(values[8]);
+            FreeSetsNum = int.Parse(values[9]);
+            Active = bool.Parse(values[10]);
+            IdUser = int.Parse(values[11]);
         }
     }
 }
