@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
-    internal class TourPoint : ISerializable
+    public class TourPoint : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }

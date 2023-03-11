@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
-    internal class Location : ISerializable
+    public class Location : ISerializable
     {
         public int Id { get; set; }
         public string City { get; set; }
@@ -15,9 +15,8 @@ namespace InitialProject.Model
 
         public Location() { }
 
-        public Location(int id, string city, string country)
+        public Location(string city, string country)
         {
-            Id = id;
             City = city;
             Country = country;
         }
