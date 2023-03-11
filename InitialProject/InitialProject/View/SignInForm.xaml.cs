@@ -55,7 +55,9 @@ namespace InitialProject
                     {
                         case Roles.OWNER:
                             OwnerMainWindow ownerMainWindow = new OwnerMainWindow(user);
-                            ownerMainWindow.Show(); 
+
+                            ownerMainWindow.Show();
+
                             break;
                         case Roles.GUEST1:
                             Guest1MainWindow guest1MainWindow = new Guest1MainWindow(user);
@@ -71,12 +73,17 @@ namespace InitialProject
                             break;
                     }
 
+                    
+                    Close();
+
+
                  /* CommentsOverview commentsOverview = new CommentsOverview(user);
                     commentsOverview.Show();
                     Close();*/
 
                    
                     //Close();
+
 
                 } 
                 else
