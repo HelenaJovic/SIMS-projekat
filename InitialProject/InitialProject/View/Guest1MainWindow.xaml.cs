@@ -147,13 +147,13 @@ namespace InitialProject.View
                     {
                         foreach(Location loc in Locations)
                         {
-                            if(a.IdLocation==loc.Id)
+                         /*   if(a.IdLocation==loc.Id)
                             {
                                 if(!loc.City.ToLower().Contains(splitted[0].ToLower()) && !loc.Country.ToLower().Contains(splitted[1].ToLower()))
                                 {
                                     indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
                                 }
-                            }
+                            }*/
                         }
                     }
                 }
