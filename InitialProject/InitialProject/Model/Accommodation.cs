@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace InitialProject.Model
 {
-
 	public class Accommodation : ISerializable
-
 	{
 
 		public int Id { get; set; }
@@ -26,26 +24,20 @@ namespace InitialProject.Model
 
 		public int DaysBeforeCancel { get; set; }
 
-		public List<Image> Images	{get; set;}
+		public List<Image> Images { get; set; }
 
 		public int IdUser { get; set; }
 
-
-		public Accommodation(string name,Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser)
-
-
-
+		public Accommodation(string name, Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser)
 		{
 			this.Name = name;
 			this.Location = location;
 			this.Type = type;
 			this.MaxGuestNum = maxGuestNum;
-			this.MinReservationDays=minResevationDays;
+			this.MinReservationDays = minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
-			this.IdImage = idImage;
-			this.IdUser= idUser;
 
-
+			this.IdUser = idUser;
 		}
 
 		public Accommodation()
@@ -61,9 +53,11 @@ namespace InitialProject.Model
 			Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), values[4]);
 			MaxGuestNum = int.Parse(values[5]);
 			MinReservationDays = int.Parse(values[6]);
-			DaysBeforeCancel=int.Parse(values[7]);
+			DaysBeforeCancel = int.Parse(values[7]);
 			IdUser = int.Parse(values[9]);
-  }
+
+
+		}
 
 		public string[] ToCSV()
 		{
@@ -77,8 +71,7 @@ namespace InitialProject.Model
 				MaxGuestNum.ToString(),
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
-        IdImage.ToString(),
-				IdUser.ToString(),
+				IdUser.ToString()
 
 
 			};
