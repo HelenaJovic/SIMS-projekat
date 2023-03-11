@@ -12,6 +12,7 @@
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="View\search.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,10 @@
     <Content Include="Resources\Images\view.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\search.png" />
   </ItemGroup>
 
 </Project>
