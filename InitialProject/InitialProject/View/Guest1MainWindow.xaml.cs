@@ -142,7 +142,7 @@ namespace InitialProject.View
             }
             else if (splitted.Length == 2)
             {
-                foreach (Accommodation a in AccommodationsCopyList)
+                /*foreach (Accommodation a in AccommodationsCopyList)
                 {
                     if (AccommodationLocation.IsSelected)
                     {
@@ -157,7 +157,7 @@ namespace InitialProject.View
                             }*/
                         }
                     }
-                }
+                }*/
             }
                 for (int i = indexesToDrop.Count - 1; i >= 0; i--)
                 {
