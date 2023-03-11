@@ -8,10 +8,12 @@ using System.Windows.Input;
 
 namespace InitialProject.Model
 {
-    internal class Tour : ISerializable
+    public class Tour : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Location Location { get; set; }
+        public string Descripiton { get; set; }
         public string Language { get; set; }
         public int MaxGuestNum { get; set; }
         public List<TourPoint> Points { get; set; }
@@ -21,6 +23,8 @@ namespace InitialProject.Model
         public List<Image> Images { get; set; }
         public int FreeSetsNum { get; set; }
         public bool Active { get; set; }
+        public int IdUser { get; set; }
+        
 
         public Tour()
         {
@@ -28,10 +32,10 @@ namespace InitialProject.Model
             Images = new List<Image>();
         }
 
-        public Tour(int id, string name, string language, int maxGuestNum, DateTime startDate, DateTime endDate, int duration, int freeSetsNum, bool active)
+        public Tour(string name, Location location, string language, int maxGuestNum, DateTime startDate, DateTime endDate, int duration, int freeSetsNum, bool active, int idUser)
         {
-            Id = id;
             Name = name;
+            Location = location;
             Language = language;
             MaxGuestNum = maxGuestNum;
             StartDate = startDate;
@@ -39,6 +43,7 @@ namespace InitialProject.Model
             Duration = duration;
             FreeSetsNum = freeSetsNum;
             Active = active;
+            IdUser = idUser;
         }
 
         public string[] ToCSV()
@@ -47,13 +52,16 @@ namespace InitialProject.Model
             {
                 Id.ToString(),
                 Name,
+                Location.City,
+                Location.Country,
                 Language,
                 MaxGuestNum.ToString(),
                 StartDate.ToString(),
                 EndDate.ToString(),
                 Duration.ToString(),
                 FreeSetsNum.ToString(),
-                Active.ToString()
+                Active.ToString(),
+                IdUser.ToString()
             };
             return csvValues;
         }
@@ -62,13 +70,15 @@ namespace InitialProject.Model
         {
             Id = int.Parse(values[0]);
             Name = values[1];
-            Language = values[2];
-            MaxGuestNum = int.Parse(values[3]);
-            StartDate = DateTime.Parse(values[4]);
-            EndDate = DateTime.Parse(values[5]);
-            Duration = int.Parse(values[6]);
-            FreeSetsNum = int.Parse(values[7]);
-            Active = bool.Parse(values[8]);
+            Location = new Location(values[2], values[3]);
+            Language = values[4];
+            MaxGuestNum = int.Parse(values[5]);
+            StartDate = DateTime.Parse(values[6]);
+            EndDate = DateTime.Parse(values[7]);
+            Duration = int.Parse(values[8]);
+            FreeSetsNum = int.Parse(values[9]);
+            Active = bool.Parse(values[10]);
+            IdUser = int.Parse(values[11]);
         }
     }
 }
