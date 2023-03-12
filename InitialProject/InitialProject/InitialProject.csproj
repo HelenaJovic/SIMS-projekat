@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <Resource Include="View\restart.png" />
-    <Resource Include="View\search.png" />
   </ItemGroup>
 
 </Project>

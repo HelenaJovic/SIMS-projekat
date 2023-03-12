@@ -43,7 +43,7 @@ namespace InitialProject.Model
 			this.MaxGuestNum = maxGuestNum;
 			this.MinReservationDays=minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
-      this.IdUser= idUser;
+			this.IdUser= idUser;
 
 
     }
@@ -60,7 +60,7 @@ namespace InitialProject.Model
 		{
 			Id = int.Parse(values[0]);
 			Name = values[1];
-      IdLocation=int.Parse(values[2]);
+		    IdLocation=int.Parse(values[2]);
 			Location = new Location(values[3], values[4]);
 			Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), values[5]);
 			MaxGuestNum = int.Parse(values[6]);
@@ -86,7 +86,7 @@ namespace InitialProject.Model
 				MaxGuestNum.ToString(),
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
-        IdUser.ToString()
+				IdUser.ToString()
 
 
 
