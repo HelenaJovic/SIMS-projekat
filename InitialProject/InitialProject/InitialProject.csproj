@@ -12,6 +12,7 @@
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="View\restart.png" />
     <None Remove="View\search.png" />
   </ItemGroup>
 
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="View\restart.png" />
     <Resource Include="View\search.png" />
   </ItemGroup>
 

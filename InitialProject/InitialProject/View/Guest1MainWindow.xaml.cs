@@ -31,6 +31,7 @@ namespace InitialProject.View
         public Accommodation SelectedAccommodation{ get; set; }
         public User LoggedInUser { get; set; }
         private readonly AccommodationRepository _accommodationRepository;
+        private readonly LocationRepository _locationRepository;
 
         
 
@@ -43,22 +44,23 @@ namespace InitialProject.View
             DataContext = this;
             LoggedInUser = user;
             _accommodationRepository = new AccommodationRepository();
+            _locationRepository = new LocationRepository();
             AccommodationsMainList = new ObservableCollection<Accommodation>();
             AccommodationsCopyList = new ObservableCollection<Accommodation>();
-            Locations = new ObservableCollection<Location>();
+            Locations = new ObservableCollection<Location>(_locationRepository.GetAll());
             Accommodations = new ObservableCollection<Accommodation>(_accommodationRepository.GetByUser(user));
             string[] linesAccommodation = File.ReadAllLines("../../../Resources/Data/accommodations.csv");
             string[] linesLocation = File.ReadAllLines("../../../Resources/Data/locations.csv");
             foreach (string line in linesAccommodation)
-            {   Location location = new Location();
+            {   //Location location = new Location();
                 Accommodation a = new Accommodation();
-                foreach(string lineLocation in linesLocation)
+                /*foreach(string lineLocation in linesLocation)
                 {
                    
                     string[] splited_loc = line.Split("|");
                     location.FromCSV(splited_loc);
                     Locations.Add(location);
-                }
+                }*/
                 /*if(a.IdLocation==location.Id)
                 {
                     string[] splited = line.Split("|");
@@ -80,7 +82,7 @@ namespace InitialProject.View
 
         }
 
-        private void Button_Click_Search(object sender, RoutedEventArgs e)
+      /* private void Button_Click_Search(object sender, RoutedEventArgs e)
         {
             //AccommodationsCopyList=new ObservableCollection<Accommodation>(_accommodationRepository.GetAll());
             AccommodationsMainList.Clear();
@@ -100,7 +102,7 @@ namespace InitialProject.View
                 return;
             }
 
-            String [] splitted=TxtSearch.Text.Split(" ");
+            String [] splitted=TxtSearch.Text.Split(",");
             List<int> indexesToDrop= new List<int>();
 
             if (splitted.Length == 1)
@@ -141,19 +143,20 @@ namespace InitialProject.View
             }
             else if (splitted.Length == 2)
             {
-                foreach (Accommodation a in AccommodationsCopyList)
+                if (AccommodationLocation.IsSelected)
                 {
-                    if (AccommodationLocation.IsSelected)
-                    {
-                        foreach(Location loc in Locations)
+                    foreach (Accommodation a in AccommodationsCopyList)
+                {
+                    
+                        foreach (Location location in Locations)
                         {
-                         /*   if(a.IdLocation==loc.Id)
-                            {
-                                if(!loc.City.ToLower().Contains(splitted[0].ToLower()) && !loc.Country.ToLower().Contains(splitted[1].ToLower()))
+                           if (a.IdLocation == location.Id)
+                           {
+                                if (!a.Location.City.ToLower().Equals(splitted[0].ToLower()) && !a.Location.Country.ToLower().Equals(splitted[1].ToLower()))
                                 {
                                     indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
                                 }
-                            }*/
+                            }
                         }
                     }
                 }
@@ -163,19 +166,31 @@ namespace InitialProject.View
                     AccommodationsMainList.RemoveAt(indexesToDrop[i]);
                 }
             }
-
+       */
 
         
 
-        private void ViewGallery_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void Reserve_Click(object sender, RoutedEventArgs e)
         {
             CreateReservation createReservation = new CreateReservation();
             createReservation.Show();
+        }
+
+        private void Filter_Click(object sender, RoutedEventArgs e)
+        {
+            FilteringAccommodation filteringAccommodation1 = new FilteringAccommodation();
+            filteringAccommodation1.Show();
+        }
+
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+            AccommodationsMainList.Clear();
+            foreach (Accommodation a in AccommodationsCopyList)
+            {
+                AccommodationsMainList.Add(a);
+            }
         }
     }
 }
