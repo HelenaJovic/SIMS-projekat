@@ -31,7 +31,9 @@ namespace InitialProject.Model
 
 
 
+
 		public Accommodation(string name, int idLocation,Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser)
+
 
 		{
 			this.Name = name;
@@ -45,6 +47,9 @@ namespace InitialProject.Model
 
 
     }
+
+		
+
 
 		public Accommodation()
 		{
@@ -64,6 +69,7 @@ namespace InitialProject.Model
       IdUser = int.Parse(values[9]);
 
 
+
 		}
 
 
@@ -81,6 +87,7 @@ namespace InitialProject.Model
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
         IdUser.ToString()
+
 
 
 			};
