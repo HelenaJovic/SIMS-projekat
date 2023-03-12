@@ -1,4 +1,5 @@
-﻿using InitialProject.Model;
+﻿
+using InitialProject.Model;
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
@@ -82,91 +83,6 @@ namespace InitialProject.View
 
         }
 
-      /* private void Button_Click_Search(object sender, RoutedEventArgs e)
-        {
-            //AccommodationsCopyList=new ObservableCollection<Accommodation>(_accommodationRepository.GetAll());
-            AccommodationsMainList.Clear();
-
-            foreach(Accommodation a in AccommodationsCopyList)
-            {
-                AccommodationsMainList.Add(a);
-            }
-
-            if(TxtSearch.Text.Equals(""))
-            {
-                AccommodationsMainList.Clear();
-                foreach (Accommodation a in AccommodationsCopyList)
-                {
-                    AccommodationsMainList.Add(a);
-                }
-                return;
-            }
-
-            String [] splitted=TxtSearch.Text.Split(",");
-            List<int> indexesToDrop= new List<int>();
-
-            if (splitted.Length == 1)
-            {
-                foreach (Accommodation a in AccommodationsCopyList)
-                {
-                    if (AccommodationName.IsSelected)
-                    {
-                        if (!a.Name.ToLower().Contains(splitted[0].ToLower()))
-                        {
-                            indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
-                        }
-                    }
-                    else if (GuestNumber.IsSelected)
-                    {
-                        if (a.MaxGuestNum.ToString().CompareTo(splitted[0].ToLower()) < 0 && !a.MaxGuestNum.ToString().Equals(splitted[0]))
-                        {
-                            indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
-                        }
-                    }
-                    else if (ReservationNumDays.IsSelected)
-                    {
-                        if (a.MinReservationDays.ToString().CompareTo(splitted[0].ToLower()) > 0 && !a.MinReservationDays.ToString().Equals(splitted[0]))
-                        {
-                            indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
-                        }
-                    }
-                    else if (AccommodationType.IsSelected)
-                    {
-                        if (!a.Type.ToString().ToLower().Contains(splitted[0].ToLower()))
-                        {
-                            indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
-                        }
-                    }
-
-
-                }
-            }
-            else if (splitted.Length == 2)
-            {
-                if (AccommodationLocation.IsSelected)
-                {
-                    foreach (Accommodation a in AccommodationsCopyList)
-                {
-                    
-                        foreach (Location location in Locations)
-                        {
-                           if (a.IdLocation == location.Id)
-                           {
-                                if (!a.Location.City.ToLower().Equals(splitted[0].ToLower()) && !a.Location.Country.ToLower().Equals(splitted[1].ToLower()))
-                                {
-                                    indexesToDrop.Add(AccommodationsCopyList.IndexOf(a));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-                for (int i = indexesToDrop.Count - 1; i >= 0; i--)
-                {
-                    AccommodationsMainList.RemoveAt(indexesToDrop[i]);
-                }
-            }
-       */
 
         
 

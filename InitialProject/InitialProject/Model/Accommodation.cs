@@ -14,6 +14,7 @@ namespace InitialProject.Model
 
 		public string Name { get; set; }
 
+		public int IdLocation { get; set; }
 		public Location Location { get; set; }
 
 		public AccommodationType Type { get; set; }
@@ -28,20 +29,27 @@ namespace InitialProject.Model
 
 		public int IdUser { get; set; }
 
-		public int IdLocation { get; set; }
 
-		public Accommodation(string name,Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser,int idLocation)
+
+
+		public Accommodation(string name, int idLocation,Location location, AccommodationType type, int maxGuestNum, int minResevationDays, int daysBeforeCancel, int idUser)
+
+
 		{
 			this.Name = name;
+			this.IdLocation = idLocation;
 			this.Location = location;
 			this.Type = type;
 			this.MaxGuestNum = maxGuestNum;
 			this.MinReservationDays=minResevationDays;
 			this.DaysBeforeCancel = daysBeforeCancel;
-			
-			this.IdUser = idUser;
-			this.IdLocation = idLocation;
-		}
+      this.IdUser= idUser;
+
+
+    }
+
+		
+
 
 		public Accommodation()
 		{
@@ -52,16 +60,18 @@ namespace InitialProject.Model
 		{
 			Id = int.Parse(values[0]);
 			Name = values[1];
-			Location = new Location(values[2], values[3]);
-			Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), values[4]);
-			MaxGuestNum = int.Parse(values[5]);
-			MinReservationDays = int.Parse(values[6]);
-			DaysBeforeCancel=int.Parse(values[7]);
-			IdUser = int.Parse(values[8]);
-			IdLocation = int.Parse(values[9]);
+      IdLocation=int.Parse(values[2]);
+			Location = new Location(values[3], values[4]);
+			Type = (AccommodationType)Enum.Parse(typeof(AccommodationType), values[5]);
+			MaxGuestNum = int.Parse(values[6]);
+			MinReservationDays = int.Parse(values[7]);
+			DaysBeforeCancel=int.Parse(values[8]);
+      IdUser = int.Parse(values[9]);
+
 
 
 		}
+
 
 		public string[] ToCSV()
 		{
@@ -69,15 +79,16 @@ namespace InitialProject.Model
 			{
 				Id.ToString(),
 				Name,
+				Location.Id.ToString(),
 				Location.City,
 				Location.Country,
 				Type.ToString(),
 				MaxGuestNum.ToString(),
 				MinReservationDays.ToString(),
 				DaysBeforeCancel.ToString(),
-				IdUser.ToString(),
-				IdLocation.ToString(),
-			    
+        IdUser.ToString()
+
+
 
 			};
 			return csvValues;
