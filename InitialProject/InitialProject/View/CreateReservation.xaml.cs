@@ -15,19 +15,23 @@ using System.Windows.Shapes;
 namespace InitialProject.View
 {
     /// <summary>
-    /// Interaction logic for AddFilters.xaml
+    /// Interaction logic for CreateReservation.xaml
     /// </summary>
-    public partial class AddFilters : Window
+    public partial class CreateReservation : Window
     {
-        public AddFilters()
+        public CreateReservation()
         {
             InitializeComponent();
         }
 
-        private void Button_Click_Done(object sender, RoutedEventArgs e)
+        private void Reserve_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelCreate_Click(object sender, RoutedEventArgs e)
         {
             Close();
-
         }
     }
 }

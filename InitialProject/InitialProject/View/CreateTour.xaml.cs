@@ -226,7 +226,9 @@ namespace InitialProject.View
                     break;
             }
 
-            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateOnly.Parse(Date), startTime, int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id) ;
+
+            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateOnly.Parse(Date), startTime, int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id, savedLocation.Id) ;
+
             Tour savedTour = _tourRepository.Save(newTour);
             GuideMainWindow.Tours.Add(savedTour);
 

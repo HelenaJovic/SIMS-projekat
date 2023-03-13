@@ -10,7 +10,7 @@ namespace InitialProject.Repository
 {
 	public class AccommodationRepository
 	{
-        private const string FilePath = "../../../Resources/Data/accommodations.csv";
+        public const string FilePath = "../../../Resources/Data/accommodations.csv";
 
         private readonly Serializer<Accommodation> _serializer;
 
@@ -65,7 +65,15 @@ namespace InitialProject.Repository
             return accommodation;
         }
 
+        public List<Accommodation> GetByUser(User user)
+
+		{
+            _accommodations= _serializer.FromCSV(FilePath);
+            return _accommodations.FindAll(a => a.IdUser == user.Id);
+		}
+
        
+
     }
 }
 
