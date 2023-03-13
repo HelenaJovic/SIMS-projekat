@@ -70,5 +70,17 @@ namespace InitialProject.Repository
             _tours = _serializer.FromCSV(FilePath);
             return _tours.FindAll(c => c.IdUser == user.Id);
         }
+
+        public string GetTourNameById(int id)
+        {
+            foreach(Tour tour in _tours)
+            {
+                if (tour.Id == id)
+                {
+                    return tour.Name;
+                }
+            }
+            return null;
+        }
     }
 }

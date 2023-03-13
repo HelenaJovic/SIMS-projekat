@@ -34,9 +34,16 @@
                     </DataGrid>
                 </TabItem>
                 <TabItem Header="Reservation">
-                    <DataGrid>
+                    <DataGrid Padding="20 20 20 20" BorderBrush="Black" BorderThickness="2" Grid.ColumnSpan="2"
+                      ItemsSource="{Binding ReservedTours, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}"
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Id tour" Binding="{Binding IdTour}" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tour name" Binding="{Binding TourName}" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Id user" Binding="{Binding IdUser}" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Guest number" Binding="{Binding GuestNum}" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Free sets number" Binding="{Binding FreeSetsNum}" Width="1*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
@@ -44,7 +51,7 @@
         </Grid>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
-                <Button Content="Reserve">
+                <Button Content="Reserve" Click="Button_Click_Resrve">
                     
                     
                 </Button>
