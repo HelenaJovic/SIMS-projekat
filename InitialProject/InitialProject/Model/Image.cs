@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 namespace InitialProject.Model
 {
     public class Image : ISerializable
-
     {
         public int Id { get; set; }
         public string Url { get; set; }
         public int IdAccommodation { get; set; }
-
         public int IdTour { get; set; }
 
         public Image(string url, int idAccommodation, int idTour)
@@ -52,3 +50,4 @@ namespace InitialProject.Model
         }
     }
 }
+

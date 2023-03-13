@@ -74,6 +74,18 @@ namespace InitialProject.Repository
             return _tours.FindAll(c => c.IdUser == user.Id);
         }
 
+        public string GetTourNameById(int id)
+        {
+            foreach(Tour tour in _tours)
+            {
+                if (tour.Id == id)
+                {
+                    return tour.Name;
+                }
+            }
+            return null;
+        }
+        
         public List<Tour> GetAllByUserAndDate(User user, DateTime currentDay) {
             _tours = _serializer.FromCSV(FilePath);
             DateOnly date = DateOnly.FromDateTime(currentDay);
@@ -85,6 +97,7 @@ namespace InitialProject.Repository
             tour.Active= true;
             _tourPointRepository.ActivateFirstPoint(tour);
             Update(tour);
+
         }
     }
 }
