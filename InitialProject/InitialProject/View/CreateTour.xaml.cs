@@ -2,6 +2,7 @@
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -29,6 +30,9 @@ namespace InitialProject.View
         private readonly LocationRepository _locationRepository;
         private readonly TourPointRepository _tourPointRepository;
         private readonly ImageRepository _imageRepository;
+
+        public static ObservableCollection<string> Cities { get; set; }
+        public static ObservableCollection<string> Countries { get; set; }
 
         private string _name;
         private string _city;
@@ -193,11 +197,12 @@ namespace InitialProject.View
             _locationRepository = new LocationRepository();
             _tourPointRepository = new TourPointRepository();
             _imageRepository = new ImageRepository();
+            Cities = new ObservableCollection<string>(_locationRepository.GetAllCities());
+            Countries = new ObservableCollection<string>(_locationRepository.GetAllCountries());
         }
         private void ConfirmCreate_Click(object sender, RoutedEventArgs e)
         {
-            Location newLocation = new Location(City, Country);
-            Location savedLocation = _locationRepository.Save(newLocation);
+            Location savedLocation = _locationRepository.GetByCity(City);
             
             switch (ComboBoxTime.SelectedIndex)
             {

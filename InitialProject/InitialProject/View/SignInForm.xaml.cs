@@ -72,8 +72,8 @@ namespace InitialProject
                     }
 
                  /* CommentsOverview commentsOverview = new CommentsOverview(user);
-                    commentsOverview.Show();
-                    Close();*/
+                    commentsOverview.Show();*/
+                    Close();
 
                    
                     //Close();
