@@ -66,7 +66,7 @@ namespace InitialProject.Model
 			MaxGuestNum = int.Parse(values[6]);
 			MinReservationDays = int.Parse(values[7]);
 			DaysBeforeCancel=int.Parse(values[8]);
-      IdUser = int.Parse(values[9]);
+		    IdUser = int.Parse(values[9]);
 
 
 

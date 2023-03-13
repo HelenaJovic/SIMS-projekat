@@ -1,5 +1,6 @@
 ﻿using InitialProject.Model;
 using InitialProject.Serializer;
+using InitialProject.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,38 @@ namespace InitialProject.Repository
 {
     public class AccommodationReservationRepository
     {
-        private const string FilePath = "../../../Resources/Data/accommodations.csv";
+        private const string FilePath = "../../../Resources/Data/accommodationsreservations.csv";
+
 
         private readonly Serializer<AccommodationReservation> _serializer;
 
         private List<AccommodationReservation> _accommodationReservations;
+        public User LoggedInUser { get; set; }
 
-        public AccommodationReservationRepository()
+        public AccommodationReservationRepository(User user)
         {
             _serializer = new Serializer<AccommodationReservation>();
             _accommodationReservations = _serializer.FromCSV(FilePath);
+            LoggedInUser = user;
         }
 
         public List<AccommodationReservation> GetAll()
         {
             return _serializer.FromCSV(FilePath);
+        }
+
+        public string GetNameById(int id)
+        {
+            Guest1MainWindow guest1MainWindow = new Guest1MainWindow(LoggedInUser);
+            foreach(Accommodation accommodation in Guest1MainWindow.AccommodationsMainList)
+            {
+                if(accommodation.Id == id)
+                {
+                    return accommodation.Name;
+                }
+                return null;
+            }
+            return null;
         }
 
         public AccommodationReservation Save(AccommodationReservation accommodationReservation)
@@ -46,6 +64,8 @@ namespace InitialProject.Repository
             return _accommodationReservations.Max(c => c.Id) + 1;
         }
 
+        
+
         public void Delete(AccommodationReservation accommodationReservation)
         {
             _accommodationReservations = _serializer.FromCSV(FilePath);
@@ -63,6 +83,12 @@ namespace InitialProject.Repository
             _accommodationReservations.Insert(index, accommodationReservation);       // keep ascending order of ids in file 
             _serializer.ToCSV(FilePath, _accommodationReservations);
             return accommodationReservation;
+        }
+        public List<AccommodationReservation> GetByUser(User user)
+
+        {
+            _accommodationReservations = _serializer.FromCSV(FilePath);
+            return _accommodationReservations.FindAll(a => a.IdUser == user.Id);
         }
     }
 }

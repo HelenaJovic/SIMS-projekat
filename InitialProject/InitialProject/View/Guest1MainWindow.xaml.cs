@@ -26,12 +26,15 @@ namespace InitialProject.View
     {
         public static ObservableCollection<Accommodation> Accommodations { get; set; }
         public static ObservableCollection<Accommodation> AccommodationsMainList { get; set; }
+        public static ObservableCollection<AccommodationReservation> AccommodationsReservationList { get; set; }
+
         public static ObservableCollection<Accommodation> AccommodationsCopyList { get; set; }
 
         public static ObservableCollection<Location> Locations { get; set; }
         public Accommodation SelectedAccommodation{ get; set; }
         public User LoggedInUser { get; set; }
         private readonly AccommodationRepository _accommodationRepository;
+        private readonly AccommodationReservationRepository _reservationRepository;
         private readonly LocationRepository _locationRepository;
 
         
@@ -46,8 +49,11 @@ namespace InitialProject.View
             LoggedInUser = user;
             _accommodationRepository = new AccommodationRepository();
             _locationRepository = new LocationRepository();
+            _reservationRepository = new AccommodationReservationRepository(LoggedInUser);
             AccommodationsMainList = new ObservableCollection<Accommodation>();
             AccommodationsCopyList = new ObservableCollection<Accommodation>();
+            AccommodationsReservationList=new ObservableCollection<AccommodationReservation>(_reservationRepository.GetByUser(user));
+            // SelectedAccommodation=new Accommodation();
             Locations = new ObservableCollection<Location>(_locationRepository.GetAll());
             Accommodations = new ObservableCollection<Accommodation>(_accommodationRepository.GetByUser(user));
             string[] linesAccommodation = File.ReadAllLines("../../../Resources/Data/accommodations.csv");
@@ -90,8 +96,15 @@ namespace InitialProject.View
 
         private void Reserve_Click(object sender, RoutedEventArgs e)
         {
-            CreateReservation createReservation = new CreateReservation();
-            createReservation.Show();
+            if (Tab.SelectedIndex == 0)
+            {
+                if (SelectedAccommodation != null)
+                {
+                    CreateReservation createReservation = new CreateReservation(SelectedAccommodation, LoggedInUser);
+                    createReservation.Show();
+                }
+                else return;
+            }
         }
 
         private void Filter_Click(object sender, RoutedEventArgs e)

@@ -72,7 +72,20 @@ namespace InitialProject.Repository
             return _accommodations.FindAll(a => a.IdUser == user.Id);
 		}
 
-       
+        public string GetNameByAccId(int id)
+        {
+            
+            foreach (Accommodation accommodation in _accommodations)
+            {
+                if (accommodation.Id == id)
+                {
+                    return accommodation.Name;
+                }
+            }
+            return null;
+        }
+
+
 
     }
 }

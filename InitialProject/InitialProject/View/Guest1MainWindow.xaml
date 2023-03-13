@@ -35,12 +35,14 @@
 
                     </DataGrid>
                 </TabItem>
-                <TabItem Header="Reservations">
-                    <DataGrid>
+                <TabItem Header="Reservations" >
+                    <DataGrid  ItemsSource="{Binding AccommodationsReservationList, UpdateSourceTrigger=PropertyChanged}"
+                      
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Background="Bisque">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Accommodation name" Width="1*" ></DataGridTextColumn>
-                            <DataGridTextColumn Header="StartDate" Width="1*" ></DataGridTextColumn>
-                            <DataGridTextColumn Header="EndDate" Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Accommodation name" Width="1*" Binding="{Binding AccommodationName}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="StartDate" Width="1*" Binding="{Binding StartDate}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="EndDate" Width="1*" Binding="{Binding EndDate}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>

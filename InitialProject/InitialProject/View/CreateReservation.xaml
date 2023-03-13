@@ -36,7 +36,7 @@
 
                 </DatePicker>
 
-                <DatePicker Grid.Row="1" Grid.Column="1" Text="{Binding Path=StartDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                <DatePicker Grid.Row="1" Grid.Column="1" Text="{Binding Path=EndDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30" Cursor="Hand">
 
                 </DatePicker>
