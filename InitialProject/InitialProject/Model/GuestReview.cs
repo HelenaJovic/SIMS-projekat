@@ -20,17 +20,20 @@ namespace InitialProject.Model
 
 		public int RuleGrade { get; set; }
 
+		public string Comment { get; set; }
+
 		public GuestReview()
 		{
 
 		}
 
-		public GuestReview(int idOwner, int idGuest, int cleanlinessGrade, int ruleGrade)
+		public GuestReview(int idOwner, int idGuest, int cleanlinessGrade, int ruleGrade, string comment)
 		{
 			this.IdOwner=idOwner;
 			this.IdGuest=idGuest;
 			this.CleanlinessGrade=cleanlinessGrade;
 			this.RuleGrade=ruleGrade;
+			this.Comment=comment;
 
 		}
 
@@ -41,6 +44,7 @@ namespace InitialProject.Model
 			IdGuest=int.Parse(values[2]);
 			CleanlinessGrade=int.Parse(values[3]);
 			RuleGrade=int.Parse(values[4]);
+			Comment=values[5];
 
 
 		}
@@ -53,7 +57,8 @@ namespace InitialProject.Model
 				IdOwner.ToString(),
 				IdGuest.ToString(),
 				CleanlinessGrade.ToString(),
-				RuleGrade.ToString()
+				RuleGrade.ToString(),
+				Comment
 
 
 			};
