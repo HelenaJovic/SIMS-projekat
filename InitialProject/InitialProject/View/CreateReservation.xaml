@@ -14,25 +14,29 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Border BorderBrush="Azure" BorderThickness="5">
-            <Grid Grid.Row="0" Grid.Column="0" Width="300" Height="300" Background="WhiteSmoke"  >
-            
+            <Grid Grid.Row="0" Grid.Column="0" Width="500" Height="300" Background="WhiteSmoke"  >
+
                 <Grid.RowDefinitions >
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
-
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Height="30" >Choose start date</Label>
-                <Label Grid.Row="1" Grid.Column="0" Height="30" >Choose end date</Label>
-                <Label Grid.Row="2" Grid.Column="0" Height="30" >Choose number of days</Label>
+                <Label Grid.Row="0" Grid.Column="0" Height="30" Width="150">Choose start date</Label>
+                <Label Grid.Row="1" Grid.Column="0" Height="30" Width="150" >Choose end date</Label>
+                <Label Grid.Row="2" Grid.Column="0" Height="30" Width="150">Choose number of days</Label>
+                <Label Grid.Row="3" Grid.Column="0" Height="30" Width="150">Choose number of guests</Label>
+
 
                 <DatePicker Grid.Row="0" Grid.Column="1" Text="{Binding Path=StartDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Cursor="Hand"
-                     Height="30">
+                     Height="30" >
 
                 </DatePicker>
 
@@ -42,11 +46,15 @@
                 </DatePicker>
 
                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=DaysNum, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30" Margin="0,35,0,0" VerticalAlignment="Top">
+                     Height="30" Margin="0,35,0,0" VerticalAlignment="Top" x:Name="TxtDaysNum">
                 </TextBox>
+                <TextBox Grid.Row="3" Grid.Column="1" 
+                     Height="30" Margin="0,35,0,0" VerticalAlignment="Top" x:Name="TxtNumGuest" IsEnabled="False" >
+                </TextBox>
+                <Button  Grid.Row="2"  Height="30" Grid.Column="2" Content="Check" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35,0,0"
+                Click="Check_Click" RenderTransformOrigin="0.613,1.247"/>
 
-            
-        </Grid>
+            </Grid>
         </Border>
         <WrapPanel Grid.Row="1" FlowDirection="RightToLeft" Background="BurlyWood" >
             <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20, 5, 20, 5"

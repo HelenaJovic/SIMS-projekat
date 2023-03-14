@@ -19,9 +19,9 @@ using System.Windows.Shapes;
 namespace InitialProject.View
 {
     /// <summary>
-    /// Interaction logic for CreateReservation.xaml
+    /// Interaction logic for GuestNumber.xaml
     /// </summary>
-    public partial class CreateReservation : Window
+    public partial class GuestNumber : Window
     {
         public Accommodation SelectedAccommodation;
         public AccommodationReservation accommodationReservation;
@@ -30,8 +30,10 @@ namespace InitialProject.View
         private readonly AccommodationReservationRepository _accommodationReservationRepository;
         private readonly AccommodationRepository _accommodationRepository;
         public User LoggedInUser { get; set; }
-        public CreateReservation(Accommodation selectedAccommodation, User user)
+        public GuestNumber(Accommodation selectedAccommodation, User user)
         {
+            InitializeComponent();
+
             InitializeComponent();
             DataContext = this;
             SelectedAccommodation = selectedAccommodation;
@@ -39,15 +41,19 @@ namespace InitialProject.View
             _accommodationReservationRepository = new AccommodationReservationRepository(LoggedInUser);
             accommodationReservation = new AccommodationReservation();
             _accommodationRepository = new AccommodationRepository();
-
         }
 
+        private void CancelCreate_Click(object sender, RoutedEventArgs e)
+        {
+            Close(); 
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         public string _startDate { get; set; }
         public string _endDate { get; set; }
 
@@ -90,68 +96,50 @@ namespace InitialProject.View
                 }
             }
         }
-        private void Reserve_Click(object sender, RoutedEventArgs e)
+        private MessageBoxResult ConfirmReservation()
         {
 
+            string sMessageBoxText = $"Da li ste sigurni da zelite da rezervisete ovaj smestaj?";
+            string sCaption = "Porvrda rezervacije!";
+
+            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+            MessageBoxImage icnMessageBox = MessageBoxImage.Warning;
+
+            MessageBoxResult result = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+            return result;
+        }
+
+        private void Reserve_Click(object sender, RoutedEventArgs e)
+        {
             int maxGuest = 0;
+            MessageBoxResult result = ConfirmReservation();
+
+          
+
             if (!(int.TryParse(TxtNumGuest.Text, out maxGuest) || (TxtNumGuest.Text.Equals(""))))
             {
                 return;
             }
-
             if ((maxGuest - SelectedAccommodation.MaxGuestNum) <= 0)
             {
-                string _accommodationName = _accommodationRepository.GetNameByAccId(SelectedAccommodation.Id);
-                AccommodationReservation newReservation = new(LoggedInUser.Id, DateOnly.Parse(StartDate), DateOnly.Parse(EndDate), int.Parse(DaysNum), SelectedAccommodation.Id, _accommodationName);
-                AccommodationReservation savedReservation = _accommodationReservationRepository.Save(newReservation);
-                Guest1MainWindow.AccommodationsReservationList.Add(savedReservation);
-                Close();
-                
-            }
-           else
-            {
-                MessageBox.Show("Prekrsili ste maksimalan broj gostiju");
-                Close();
-            }
-}
-
-        /* public void CallMethode()
-         {
-             CreateReservation create = new CreateReservation(SelectedAccommodation, LoggedInUser);
-             string _accommodationName = _accommodationRepository.GetNameByAccId(SelectedAccommodation.Id);
-             AccommodationReservation newReservation = new(LoggedInUser.Id, DateOnly.Parse(create.StartDate), DateOnly.Parse(create.EndDate), int.Parse(create.DaysNum), SelectedAccommodation.Id, _accommodationName);
-             AccommodationReservation savedReservation = _accommodationReservationRepository.Save(newReservation);
-             Guest1MainWindow.AccommodationsReservationList.Add(savedReservation);
-             Close();
-         }*/
-
-
-
-        private void CancelCreate_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Check_Click(object sender, RoutedEventArgs e)
-        {
-            int minReservation = 0;
-
-            if (!(int.TryParse(TxtDaysNum.Text, out minReservation) || (TxtDaysNum.Text.Equals(""))))
-            {
-                return;
-            }
-
-
-            if ((minReservation - SelectedAccommodation.MinReservationDays) >= 0)
+                if (result == MessageBoxResult.Yes)
                 {
-                     TxtNumGuest.IsEnabled = true;
-             }
-             else
-        {
-            MessageBox.Show("Prekrsili ste broj minimalnih dana za rezervaciju.");
-        }
-           
+                    CreateReservation create = new CreateReservation(SelectedAccommodation, LoggedInUser);
+                    string _accommodationName = _accommodationRepository.GetNameByAccId(SelectedAccommodation.Id);
+                    AccommodationReservation newReservation = new(LoggedInUser.Id, DateOnly.Parse(StartDate), DateOnly.Parse(EndDate), int.Parse(DaysNum), SelectedAccommodation.Id, _accommodationName);
+                    AccommodationReservation savedReservation = _accommodationReservationRepository.Save(newReservation);
+                    Guest1MainWindow.AccommodationsReservationList.Add(savedReservation);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Mozda da izaberete neki drugi smestaj?");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Prekrsili ste maksimalan  broj gostiju.");
+            }
         }
     }
 }
-
