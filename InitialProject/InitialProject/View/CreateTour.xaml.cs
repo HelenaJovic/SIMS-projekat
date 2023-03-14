@@ -2,6 +2,7 @@
 using InitialProject.Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -30,6 +31,11 @@ namespace InitialProject.View
         private readonly TourPointRepository _tourPointRepository;
         private readonly ImageRepository _imageRepository;
 
+        public static ObservableCollection<string> Cities { get; set; }
+        public static ObservableCollection<string> Countries { get; set; }
+        public String SelectedCity { get; set; }
+        public String SelectedCountry { get; set; }
+
         private string _name;
         private string _city;
         private string _country;
@@ -41,6 +47,8 @@ namespace InitialProject.View
         private string _startTime;
         private string _duration;
         private string _imagesUrl;
+        private string _selectedCountry;
+
 
         private int startTime;
 
@@ -50,6 +58,19 @@ namespace InitialProject.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+      /*  public string SelectedCountry
+        {
+            get => _selectedCountry;
+            set
+            {
+                if(value != _selectedCountry)
+                {
+                    _selectedCountry = value;
+                    OnPropertyChanged();
+                }
+            }
+        }*/
 
         public string TourName
         {
@@ -193,12 +214,13 @@ namespace InitialProject.View
             _locationRepository = new LocationRepository();
             _tourPointRepository = new TourPointRepository();
             _imageRepository = new ImageRepository();
+            Countries = new ObservableCollection<string>(_locationRepository.GetAllCountries());
+            Cities = new ObservableCollection<string>(_locationRepository.GetAllCities(SelectedCountry));
         }
         private void ConfirmCreate_Click(object sender, RoutedEventArgs e)
         {
-            Location newLocation = new Location(City, Country);
-            Location savedLocation = _locationRepository.Save(newLocation);
-            
+            Location savedLocation = _locationRepository.GetByCity(City);
+
             switch (ComboBoxTime.SelectedIndex)
             {
                 case 0:
@@ -221,8 +243,7 @@ namespace InitialProject.View
                     break;
             }
 
-
-            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateTime.Parse(StartDate), DateTime.Parse(EndDate), int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id, newLocation.Id) ;
+            Tour newTour = new Tour(TourName, savedLocation, TourLanguage, int.Parse(MaxGuestNum), DateOnly.Parse(Date), startTime, int.Parse(Duration), int.Parse(MaxGuestNum), false, LoggedInUser.Id, savedLocation.Id);
 
             Tour savedTour = _tourRepository.Save(newTour);
             GuideMainWindow.Tours.Add(savedTour);
@@ -238,9 +259,9 @@ namespace InitialProject.View
 
             string[] imagesNames = _imagesUrl.Split(",");
 
-            foreach(string name in imagesNames)
+            foreach (string name in imagesNames)
             {
-                Image newImage = new Image(name,0,savedTour.Id);
+                Image newImage = new Image(name, 0, savedTour.Id);
                 Image savedImage = _imageRepository.Save(newImage);
             }
 

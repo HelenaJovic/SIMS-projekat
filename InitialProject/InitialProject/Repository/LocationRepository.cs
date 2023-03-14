@@ -28,9 +28,32 @@ namespace InitialProject.Repository
             return _serializer.FromCSV(FilePath);
         }
 
+        public List<string> GetAllCities(string country)
+        {
+            List<string> cities = new List<string>();
+            foreach (var location in _locations)
+            {
+                if(location.Country == country)
+                    cities.Add(location.City);
+            }
+            return cities;
+        }
+        public List<string> GetAllCountries()
+        {
+            List<string> countries = new List<string>();
+
+            foreach (var location in _locations)
+            {
+                if (!countries.Contains(location.Country))
+                    countries.Add(location.Country);
+            }
+            return countries;
+        }
+        //da li nam je potrebno ovo sve
         public Location Save(Location location)
         {
-            if (!IsSaved(location)){
+            if (!IsSaved(location))
+            {
                 location.Id = NextId();
                 _locations = _serializer.FromCSV(FilePath);
                 _locations.Add(location);
@@ -49,6 +72,7 @@ namespace InitialProject.Repository
                 return false;
         }
 
+
         public int NextId()
         {
             _locations = _serializer.FromCSV(FilePath);
@@ -65,6 +89,12 @@ namespace InitialProject.Repository
             Location founded = _locations.Find(c => c.Id == location.Id);
             _locations.Remove(founded);
             _serializer.ToCSV(FilePath, _locations);
+        }
+
+        public Location GetByCity(string city)
+        {
+            _locations = _serializer.FromCSV(FilePath);
+            return _locations.Find(c => c.City == city);
         }
 
         public Location Update(Location location)

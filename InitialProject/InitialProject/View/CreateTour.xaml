@@ -32,8 +32,8 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Height="30">Name</Label>
-            <Label Grid.Row="1" Grid.Column="0" Height="30">City</Label>
-            <Label Grid.Row="2" Grid.Column="0" Height="30">Country</Label>
+            <Label Grid.Row="1" Grid.Column="0" Height="30">Country</Label>
+            <Label Grid.Row="2" Grid.Column="0" Height="30">City</Label>
             <Label Grid.Row="3" Grid.Column="0" Height="30">Description</Label>
             <Label Grid.Row="4" Grid.Column="0" Height="30">Language</Label>
             <Label Grid.Row="5" Grid.Column="0" Height="30">Max guest number</Label>
@@ -44,10 +44,10 @@
             <Label Grid.Row="10" Grid.Column="0" Height="30">Image url</Label>
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TourName, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=City, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Country, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30"></TextBox>
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Countries, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding Path=SelectedCountry}" Height="30"></ComboBox>
+            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Cities, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedItem="{Binding Path=SelectedCity}" Height="30"></ComboBox>
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Description, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                      Height="30"></TextBox>
             <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=TourLanguage, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"

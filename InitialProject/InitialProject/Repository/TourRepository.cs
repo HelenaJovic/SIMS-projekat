@@ -17,9 +17,12 @@ namespace InitialProject.Repository
 
         private List<Tour> _tours;
 
+        private readonly TourPointRepository _tourPointRepository;
+
         public TourRepository()
         {
             _serializer = new Serializer<Tour>();
+            _tourPointRepository = new TourPointRepository();
             _tours = _serializer.FromCSV(FilePath);
         }
 
@@ -69,6 +72,33 @@ namespace InitialProject.Repository
         {
             _tours = _serializer.FromCSV(FilePath);
             return _tours.FindAll(c => c.IdUser == user.Id);
+        }
+
+        public string GetTourNameById(int id)
+        {
+            foreach (Tour tour in _tours)
+            {
+                if (tour.Id == id)
+                {
+                    return tour.Name;
+                }
+            }
+            return null;
+        }
+
+        public List<Tour> GetAllByUserAndDate(User user, DateTime currentDay)
+        {
+            _tours = _serializer.FromCSV(FilePath);
+            DateOnly date = DateOnly.FromDateTime(currentDay);
+            return _tours.FindAll(c => (c.IdUser == user.Id) && (c.Date == date));
+        }
+
+        public void StartTour(Tour tour)
+        {
+            tour.Active = true;
+            _tourPointRepository.ActivateFirstPoint(tour);
+            Update(tour);
+
         }
     }
 }

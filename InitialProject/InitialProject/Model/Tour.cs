@@ -34,14 +34,14 @@ namespace InitialProject.Model
         }
 
 
-        public Tour(string name, Location location, string language, int maxGuestNum, DateTime startDate, DateTime endDate, int duration, int freeSetsNum, bool active, int idUser, int idLocation)
+        public Tour(string name, Location location, string language, int maxGuestNum, DateOnly date, int startTime, int duration, int freeSetsNum, bool active, int idUser, int idLocation)
 
         {
             Name = name;
             Location = location;
             Language = language;
             MaxGuestNum = maxGuestNum;
-            Date = startDate;
+            Date = date;
             StartTime = startTime;
             Duration = duration;
             FreeSetsNum = freeSetsNum;

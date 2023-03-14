@@ -64,5 +64,11 @@ namespace InitialProject.Repository
             _serializer.ToCSV(FilePath, _toursReservation);
             return tourReservation;
         }
+
+        public List<TourReservation> GetByUser(User user)
+        {
+            _toursReservation = _serializer.FromCSV(FilePath);
+            return _toursReservation.FindAll(c => c.IdUser == user.Id);
+        }
     }
 }

@@ -29,9 +29,9 @@ namespace InitialProject.View
         public GuideMainWindow(User user)
         {
             InitializeComponent();
-            DataContext= this;
-            LoggedInUser= user;
-            _tourRepository= new TourRepository();
+            DataContext = this;
+            LoggedInUser = user;
+            _tourRepository = new TourRepository();
             Tours = new ObservableCollection<Tour>(_tourRepository.GetByUser(user));
         }
 
@@ -43,7 +43,7 @@ namespace InitialProject.View
 
         private void TourTracking_Click(object sender, RoutedEventArgs e)
         {
-            TourTracking tourTracking= new TourTracking();
+            TourTracking tourTracking = new TourTracking(LoggedInUser);
             tourTracking.Show();
         }
     }
